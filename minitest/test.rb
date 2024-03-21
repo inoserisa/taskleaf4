@@ -13,7 +13,7 @@ class VendingMachineTest < Minitest::Test
     change = @vm.refund
 
     assert_equal(DrinkType::COKE, drink.kind)
-    assert_equal([Coin::ONE_HUNDRED] * 4, change)
+    assert_equal('400', change.to_s)
   end
 
   def test_10円ではコーラは買えない
@@ -21,7 +21,7 @@ class VendingMachineTest < Minitest::Test
     change = @vm.refund
 
     assert_nil(drink)
-    assert_equal([10], change)
+    assert_equal('10', change.to_s)
   end
 
   def test_コーラの在庫が無いときにコーラは買えない
@@ -34,7 +34,7 @@ class VendingMachineTest < Minitest::Test
     change = @vm.refund
 
     assert_nil(drink)
-    assert_equal([Coin::ONE_HUNDRED], change)
+    assert_equal('100', change.to_s)
   end
 
   def testダイエットコーラの在庫が無いときにダイエットコーラは買えない
@@ -47,7 +47,7 @@ class VendingMachineTest < Minitest::Test
     change = @vm.refund
 
     assert_nil(drink)
-    assert_equal([Coin::ONE_HUNDRED], change)
+    assert_equal('100', change.to_s)
   end
 
   def testお茶の在庫が無いときにお茶は買えない
@@ -60,7 +60,7 @@ class VendingMachineTest < Minitest::Test
     change = @vm.refund
 
     assert_nil(drink)
-    assert_equal([Coin::ONE_HUNDRED], change)
+    assert_equal('100', change.to_s)
   end
 
   def test_釣り銭が足りないときにコーラは買えない
@@ -72,6 +72,6 @@ class VendingMachineTest < Minitest::Test
     change = @vm.refund
 
     assert_nil(drink)
-    assert_equal([Coin::FIVE_HUNDRED], change)
+    assert_equal('500', change.to_s)
   end
 end
